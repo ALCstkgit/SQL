@@ -44,7 +44,7 @@ SELECT supplier_id, avg(unit_price) as avg_price FROM products GROUP BY supplier
 SELECT category_id, sum(units_in_stock) as sum_stock FROM products WHERE supplier_id IN (16,17,19) GROUP BY category_id HAVING sum(units_in_stock) > 300;
 
 --CONTAR LAS ORDENES POR EMPLEADO DE LOS PAISES (ShipCountry) SA, CANADA, SPAIN cuYO CONTADOR SEA MAYOR A 25
-SELECT employee_id, count(order_id) as num_orders FROM orders WHERE ship_country IN ('SA', 'CANADA', 'SPAIN') GROUP BY employee_id HAVING count(order_id) > 25;
+SELECT employee_id, count(order_id) as num_orders FROM orders WHERE ship_country IN ('USA', 'Canada', 'Spain') GROUP BY employee_id HAVING count(order_id) > 25;
 
 ----OBTENER LAS VENTAS (Quantity * UnitPrice) AGRUPADAS POR PRODUCTO (Orders details) Y CUYA SUMA DE VENTAS SEA MAYOR A 50.000
 SELECT product_id, sum(quantity) * sum(unit_price) as sales FROM order_details GROUP BY product_id HAVING sum(quantity) * sum(unit_price) > 50000;
