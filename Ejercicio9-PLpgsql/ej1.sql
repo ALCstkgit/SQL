@@ -6,18 +6,18 @@
 
 */
 DO $$
-DECLARE nota int := 7;
+DECLARE nota int := 8;
 BEGIN
-CASE nota
-WHEN 10 THEN
+CASE
+WHEN nota >= 9 THEN
 	RAISE NOTICE 'A';
-WHEN 9 THEN
+WHEN  9 > nota AND nota >= 7 THEN
 	RAISE NOTICE 'B';
-WHEN 8 THEN
+WHEN nota = 6 THEN
 	RAISE NOTICE 'C';
-WHEN 7 THEN
+WHEN nota = 5 THEN
 	RAISE NOTICE 'D';
-WHEN 6 THEN
+WHEN nota = 4 THEN
 	RAISE NOTICE 'E';
 ELSE
 	RAISE NOTICE 'F';
@@ -31,7 +31,7 @@ DO $$
 DECLARE num int := 7;
 BEGIN
 FOR n IN 1..10 LOOP
-	RAISE NOTICE '% x % = %',num,n,num*n;
+	RAISE NOTICE '% x % = %',num,n,(num*n);
 END LOOP;
 END $$ LANGUAGE 'plpgsql';
 /*
@@ -40,8 +40,9 @@ END $$ LANGUAGE 'plpgsql';
     Al final debe retornar el monto convertido a moneda nacional.
 */
 DO $$
-DECLARE dolars decimal := 12;
-DECLARE tasa decimal := 1.02;
+DECLARE
+dolars decimal := 12;
+tasa decimal := 1.02;
 BEGIN
 RAISE NOTICE 'Intercabio a euros = %',dolars*tasa;
 END $$ LANGUAGE 'plpgsql';
@@ -53,9 +54,10 @@ END $$ LANGUAGE 'plpgsql';
     Aplicar el metodo de amortizacion frances.
 */
 DO $$
-DECLARE monto decimal := 1000;
-DECLARE N int := 12;
-DECLARE i decimal := 0.2/12;
+DECLARE 
+monto decimal := 1000;
+N int := 12;
+i decimal := 0.2/12;
 BEGIN
 RAISE NOTICE 'Calculado: %',(monto*i)/(1-((1+i)^(-N)));
 END $$ LANGUAGE 'plpgsql';
